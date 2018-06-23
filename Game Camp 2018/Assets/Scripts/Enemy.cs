@@ -15,7 +15,8 @@ public class Enemy : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		PlayerTransform = GameObject.Find("Player").transform;
+		//PlayerTransform = GameObject.Find("Player").transform;
+		PlayerTransform = GameObject.Find("Earth").transform;
 	}
 	
 	// Update is called once per frame
