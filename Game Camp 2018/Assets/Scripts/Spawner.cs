@@ -5,14 +5,18 @@ using UnityEngine;
 public class Spawner : MonoBehaviour {
 
 	public GameObject Enemy;
+	public float Interval;
+	private float lastEnemy;
+
 
     [Header ("Screen Bounds")]
-
 	public float ScreenLeft;
 	public float ScreenRight;
 	[Space]
 	public float ScreenTop;
 	public float ScreenBottom;
+
+    
 
 
 	// Use this for initialization
@@ -23,8 +27,13 @@ public class Spawner : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		transform.position = new Vector2(Random.Range(ScreenLeft, ScreenRight), Random.Range(ScreenTop, ScreenBottom));
+		if (Time.time - Interval >= lastEnemy)
+		{
+			transform.position = new Vector2(Random.Range(ScreenLeft, ScreenRight), Random.Range(ScreenTop, ScreenBottom));
 
-		Instantiate(Enemy, transform.position, Quaternion.identity);
+			Instantiate(Enemy, transform.position, Quaternion.identity);
+
+			lastEnemy = Time.time;
+		}
 	}
 }
