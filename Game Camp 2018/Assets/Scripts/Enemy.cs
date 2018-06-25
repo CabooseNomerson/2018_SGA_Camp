@@ -14,11 +14,17 @@ public class Enemy : MonoBehaviour {
 	public float MinDistance;
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		//PlayerTransform = GameObject.Find("Player").transform;
 		PlayerTransform = GameObject.Find("Earth").transform;
-	}
-	
+
+	}//end of Start
+
+
+	//-------------------------------------------------------------------------------------------------------------
+
+
 	// Update is called once per frame
 	void Update () {
 
@@ -33,7 +39,11 @@ public class Enemy : MonoBehaviour {
 		}
 
 	//	transform.Translate(Vector2.left * speed);
-	}
+	}//end of Update
+
+
+    //-------------------------------------------------------------------------------------------------------------
+
 
 	private void OnTriggerEnter2D(Collider2D other)
     {
@@ -43,5 +53,5 @@ public class Enemy : MonoBehaviour {
         {
             print("collided with " + gameObject.name);
         }
-    }
+    }//end of OnTriggerEnter2D
 }
