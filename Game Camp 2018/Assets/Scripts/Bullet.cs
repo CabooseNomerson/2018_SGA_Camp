@@ -12,7 +12,6 @@ public class Bullet : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-
 		Destroy(gameObject, 5);
 		//RB = gameObject.GetComponent<Rigidbody2D>();
 	}

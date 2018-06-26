@@ -6,6 +6,8 @@ public class EnemyCapitalShip : MonoBehaviour {
 
 	public float speed;
 
+	public float Health;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -16,6 +18,7 @@ public class EnemyCapitalShip : MonoBehaviour {
 	void Update () 
 	{
 		transform.Translate(Vector2.left * speed);
+        
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)
@@ -24,5 +27,22 @@ public class EnemyCapitalShip : MonoBehaviour {
 		{
 			Destroy(other.gameObject);
 		}
+
+		if (other.CompareTag("MAC Round"))
+		{
+			Destroy(other.gameObject);
+
+			//take damage to self         
+			Health -= 10;
+			print(Health);
+
+			if (Health <= 0)
+			{
+				//add points
+				//spawn new capital ship(s)
+				Destroy(gameObject);
+			}
+            
+        }
 	}
 }

@@ -20,8 +20,9 @@ public class Spawner : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start () 
+	{
+		SpawnEnemy();      
 	}
 	
 	// Update is called once per frame
@@ -29,11 +30,16 @@ public class Spawner : MonoBehaviour {
 
 		if (Time.time - Interval >= lastEnemy)
 		{
-			transform.position = new Vector2(Random.Range(ScreenLeft, ScreenRight), Random.Range(ScreenTop, ScreenBottom));
-
-			Instantiate(Enemy, transform.position, Quaternion.identity);
-
-			lastEnemy = Time.time;
+			SpawnEnemy();
 		}
+	}
+
+    void SpawnEnemy()
+	{
+		transform.position = new Vector2(Random.Range(ScreenLeft, ScreenRight), Random.Range(ScreenTop, ScreenBottom));
+
+        Instantiate(Enemy, transform.position, transform.rotation);
+
+        lastEnemy = Time.time;
 	}
 }

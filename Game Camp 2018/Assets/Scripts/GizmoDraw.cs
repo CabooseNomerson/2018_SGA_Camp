@@ -19,7 +19,7 @@ public class GizmoDraw : MonoBehaviour {
 		if (gameObject.name == "SpawnerRight")
 		{
 			//assigns color
-			Gizmos.color = new Color(0, 0, 1, 1);
+			Gizmos.color = Color.magenta;
 
 			//draws gizmo
 			Gizmos.DrawCube(transform.position, new Vector3(2, 2, 0));
@@ -27,8 +27,8 @@ public class GizmoDraw : MonoBehaviour {
 
 		if (gameObject.name == "SpawnerTop")
         {
-            //assigns color
-			Gizmos.color = new Color(1, 0.92f, 0.016f, 1);
+			//assigns color
+			Gizmos.color = Color.green;
 
             //draws gizmo
             Gizmos.DrawCube(transform.position, new Vector3(2, 2, 0));
@@ -36,11 +36,22 @@ public class GizmoDraw : MonoBehaviour {
 
 		if (gameObject.name == "SpawnerBottom")
         {
-            //assigns color
-            Gizmos.color = new Color(1, 0, 1, 1);
+			//assigns color
+			Gizmos.color = Color.blue;
 
             //draws gizmo
             Gizmos.DrawCube(transform.position, new Vector3(2, 2, 0));
         }
+
+		if (gameObject.name == "FighterSpawner")
+        {
+            //assigns color
+			Gizmos.color = Color.white;
+
+            //draws gizmo
+            Gizmos.DrawCube(transform.position, new Vector3(2, 2, 0));
+        }
+
+
 	}
 }

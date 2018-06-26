@@ -13,9 +13,25 @@ public class Enemy : MonoBehaviour {
 
 	public float MinDistance;
 
+	public int[] EnemyTags;
+	private int selectedTag;
+
 	// Use this for initialization
 	void Start () 
 	{
+		//selectedTag = Random.Range(EnemyTags[0], EnemyTags.Length);
+
+		//if(selectedTag == 0)//EnemyTags[0]
+		//{
+		//	gameObject.tag = "Enemy1";         
+		//}
+
+		//if (selectedTag == 1)//EnemyTags[1]
+        //{
+        //    gameObject.tag = "Enemy2";
+        //}
+
+
 		//PlayerTransform = GameObject.Find("Player").transform;
 		PlayerTransform = GameObject.Find("Earth").transform;
 

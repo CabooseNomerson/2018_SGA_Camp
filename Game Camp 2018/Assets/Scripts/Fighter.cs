@@ -23,6 +23,27 @@ public class Fighter : MonoBehaviour {
 	public float FireRate;
     private float NextFire;
 
+    //finds closest enemy with a tag and returns that GameObj as the target
+	//public GameObject FindClosestEnemy()
+ //   {
+ //       GameObject[] gos;
+	//	GameObject closest;
+ //       gos = GameObject.FindGameObjectsWithTag("Enemy");
+ //       float distance = Mathf.Infinity;
+ //       Vector3 position = transform.position;
+ //       foreach (GameObject go in gos)
+ //       {
+ //           Vector3 diff = go.transform.position - position;
+ //           float curDistance = diff.sqrMagnitude;
+ //           if (curDistance < distance)
+ //           {
+ //               closest = go;
+ //               distance = curDistance;
+ //           }
+ //       }
+	//	return closest;
+	//}
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -33,7 +54,10 @@ public class Fighter : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+
+
 		Enemy = GameObject.FindWithTag("Enemy");
+			//FindClosestEnemy();
 
 		range = Vector2.Distance(transform.position, Enemy.transform.position);
 
@@ -83,4 +107,7 @@ public class Fighter : MonoBehaviour {
 			Destroy(gameObject);
 		}
 	}
+
+
+
 }
