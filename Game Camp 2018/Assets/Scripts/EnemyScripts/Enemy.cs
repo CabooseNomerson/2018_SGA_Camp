@@ -52,6 +52,15 @@ public class Enemy : MonoBehaviour {
         if (other.gameObject.name == "Player")
         {
             print("collided with " + gameObject.name);
+            //kill player?
         }
+
+
+        //if the enemy hits Earth
+		if (other.gameObject.name == "Earth")
+		{
+			Destroy(gameObject);
+            //remove points/lives
+		}
     }//end of OnTriggerEnter2D
 }

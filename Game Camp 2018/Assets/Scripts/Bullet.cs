@@ -12,6 +12,8 @@ public class Bullet : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+
+		Destroy(gameObject, 5);
 		//RB = gameObject.GetComponent<Rigidbody2D>();
 	}
 	
@@ -23,9 +25,20 @@ public class Bullet : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.name == "BulletCatcher")
-        {
-            Destroy(gameObject);
-        }
+
+        //if a MAC round hits the bullet catcher
+        //if (other.gameObject.name == "BulletCatcher")
+        //{
+        //    Destroy(gameObject);
+        //}
+       
+
+        //if a MAC round hits an enemy
+		if(other.gameObject.CompareTag("Enemy"))
+		{
+			Destroy(other.gameObject);
+			Destroy(gameObject);
+            //add points
+		}
     }
 }

@@ -4,66 +4,51 @@ using UnityEngine;
 
 public class UNSCTargeting : MonoBehaviour {
 
-	private GameObject Enemy;
+	private GameObject Enemy;//target enemy, assigned in Update()
 
-	public float turnspeed;
-	public float MaxMagnitudeDelta;
-	private float TurnSpeed;
+	public float turnspeed;//speed that it rotates
 
-	public float FireRate;
-	private float NextFire;
+	public float FireRate;//fire rate in seconds
+	private float NextFire;//tracks the last fired round
 
 
-	public GameObject MAC;
-	private Transform GoliathMAC;
-	private Transform DobMAC;
-	//private Vector3 TargetDifference;
+	public GameObject MAC;//the MAC round prefab
 
+	private Transform MACSpawn;//transform for spawning the round
 
 	// Use this for initialization
 	void Start () 
 	{
-		GoliathMAC = GameObject.Find("GoliathMAC").transform;
-		DobMAC = GameObject.Find("DobMAC").transform;
-
-
+		//assigning MAC spawn point through grabbing the FIRST child's transform
+		MACSpawn = transform.GetChild(0).transform;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-
-		if (Input.GetKeyDown(KeyCode.Space) && Time.time > NextFire)
+		//Input.GetKeyDown(KeyCode.Space) &&
+		if (Time.time > NextFire && Enemy != null)
 		{
             //reset the NextFire timer to a point that is FireRate seconds in the future
 			NextFire = Time.time + FireRate;
 
-			Instantiate(MAC, GoliathMAC.transform.position, transform.rotation);
-			Instantiate(MAC, DobMAC.transform.position, transform.rotation);
-		}
+			//spawn rounds at each UNSC Capital Ship's MACSpawn
+			Instantiate(MAC, MACSpawn.transform.position, transform.rotation);
+ 		}
+      
+		//constantly assign a target, will find a new one if necessary
+		Enemy = GameObject.FindWithTag("EnemyCapitalShip");
 
-		//Trying to get the UNSC ships to rotate toward enemies in a restricted angle
-
-        
-
-		//constantly assign a target
-		Enemy = GameObject.FindWithTag("Enemy");
-
-
+        //if there is an enemy assigned as a target
 		if (Enemy != null)
 		{
 			//find the direction of the target
 			Vector3 TargetDifference = Enemy.transform.position - transform.position;
 
-			//      //set the speed to turn
-			////TurnSpeed = Time.deltaTime * turnspeed;
-
-			//set the Vector3 direction to rotate towards
-			Quaternion NewDirection = Quaternion.LookRotation(TargetDifference);
 			//Vector3 finalCheatDir = new Vector3(0, 0, NewDirection.eulerAngles.x);
 			//transform.eulerAngles= finalCheatDir;
 
-			transform.eulerAngles = new Vector3(transform.rotation.x, transform.rotation.y, Mathf.Atan2(TargetDifference.y, TargetDifference.x) * Mathf.Rad2Deg);
+			transform.eulerAngles = new Vector3(0, 0, Mathf.LerpAngle(transform.eulerAngles.z, Mathf.Atan2(TargetDifference.y, TargetDifference.x) * Mathf.Rad2Deg, Time.deltaTime * turnspeed));
 
             //draw a debug gizmo
 			Debug.DrawRay(transform.position, TargetDifference, Color.red);
