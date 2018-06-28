@@ -6,12 +6,16 @@ public class Bullet : MonoBehaviour {
 
 	public float speed;
 
+	private Spawner spawner;
+
 	//private Rigidbody2D RB;
 
 
 	// Use this for initialization
 	void Start () 
 	{
+		spawner = GameObject.FindWithTag("Spawner").GetComponent<Spawner>();
+
 		Destroy(gameObject, 5);
 		//RB = gameObject.GetComponent<Rigidbody2D>();
 	}
@@ -35,8 +39,12 @@ public class Bullet : MonoBehaviour {
         //if a MAC round hits an enemy
 		if(other.gameObject.CompareTag("Enemy"))
 		{
+			spawner.NumSpawned--;
+
 			Destroy(other.gameObject);
 			Destroy(gameObject);
+
+            //subtract one from the current spawned enemy count
             //add points
 		}
     }

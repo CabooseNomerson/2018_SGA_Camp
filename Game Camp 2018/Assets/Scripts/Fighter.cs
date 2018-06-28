@@ -57,7 +57,7 @@ public class Fighter : MonoBehaviour {
 
 
 		Enemy = GameObject.FindWithTag("Enemy");
-			//FindClosestEnemy();
+			  //FindClosestEnemy();
 
 		range = Vector2.Distance(transform.position, Enemy.transform.position);
 
@@ -66,7 +66,6 @@ public class Fighter : MonoBehaviour {
 			
         //if the current range of the enemy is further than the min distance to player
         {
-            //Vector2.moveTowards(current position, target position, speed)
 			transform.position = Vector2.MoveTowards(transform.position, Enemy.transform.position, Time.deltaTime * speed);
         }
 
@@ -78,9 +77,6 @@ public class Fighter : MonoBehaviour {
         {
             //find the direction of the target
             Vector3 TargetDifference = Enemy.transform.position - transform.position;
-
-            //Vector3 finalCheatDir = new Vector3(0, 0, NewDirection.eulerAngles.x);
-            //transform.eulerAngles= finalCheatDir;
 
             transform.eulerAngles = new Vector3(0, 0, Mathf.LerpAngle(transform.eulerAngles.z, Mathf.Atan2(TargetDifference.y, TargetDifference.x) * Mathf.Rad2Deg, Time.deltaTime * turnspeed));
             
@@ -101,6 +97,8 @@ public class Fighter : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider other)
 	{
+
+        //destroy self and enemy fighter
 		if(other.gameObject.CompareTag("Enemy"))
 		{
 			Destroy(other.gameObject);

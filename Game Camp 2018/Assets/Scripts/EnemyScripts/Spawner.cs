@@ -8,6 +8,21 @@ public class Spawner : MonoBehaviour {
 	public float Interval;
 	private float lastEnemy;
 
+	[Header("Enemy Spawning")]
+
+
+	public int MaxSpawned;
+	//[HideInInspector]
+	public int NumSpawned;
+
+	[Space]
+
+    [Header ("Fighter Spawning")]
+
+	public int FighterMaxSpawned;
+    //[HideInInspector]
+    public int FighterNumSpawned;
+
 
     [Header ("Screen Bounds")]
 	public float ScreenLeft;
@@ -22,7 +37,8 @@ public class Spawner : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		SpawnEnemy();      
+		//spawns an enemy right away
+		SpawnEnemy();
 	}
 	
 	// Update is called once per frame
@@ -32,14 +48,39 @@ public class Spawner : MonoBehaviour {
 		{
 			SpawnEnemy();
 		}
+
+		if (Time.time - Interval >= lastEnemy && gameObject.name == "FighterSpawner")
+        {
+			SpawnFighter();
+        } 
 	}
 
     void SpawnEnemy()
 	{
-		transform.position = new Vector2(Random.Range(ScreenLeft, ScreenRight), Random.Range(ScreenTop, ScreenBottom));
 
-        Instantiate(Enemy, transform.position, transform.rotation);
+		if (NumSpawned <= MaxSpawned)
+		{
+			transform.position = new Vector2(Random.Range(ScreenLeft, ScreenRight), Random.Range(ScreenTop, ScreenBottom));
 
-        lastEnemy = Time.time;
+			Instantiate(Enemy, transform.position, transform.rotation);
+
+			lastEnemy = Time.time;
+
+			NumSpawned++;
+		}
+	}
+
+	void SpawnFighter()
+	{
+		if (FighterNumSpawned <= FighterMaxSpawned)
+        {
+            transform.position = new Vector2(Random.Range(ScreenLeft, ScreenRight), Random.Range(ScreenTop, ScreenBottom));
+
+            Instantiate(Enemy, transform.position, transform.rotation);
+            
+            lastEnemy = Time.time;
+
+            FighterNumSpawned++;
+        }
 	}
 }

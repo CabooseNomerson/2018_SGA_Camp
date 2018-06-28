@@ -452,7 +452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   MinDistance: 0.5
-  turnspeed: 0.5
+  turnspeed: 0.7
   bullet: {fileID: 1355229693896048, guid: 72fc32505a0df4a95bc01b1580cfb400, type: 2}
   FireRate: 1.5
 --- !u!212 &212139550800490346

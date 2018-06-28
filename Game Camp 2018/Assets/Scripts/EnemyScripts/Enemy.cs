@@ -60,14 +60,13 @@ public class Enemy : MonoBehaviour {
 
     //-------------------------------------------------------------------------------------------------------------
 
-
+    
 	private void OnTriggerEnter2D(Collider2D other)
     {
 		//print("collided, no loop");
 
         if (other.gameObject.name == "Player")
         {
-            print("collided with " + gameObject.name);
             //kill player?
         }
 
